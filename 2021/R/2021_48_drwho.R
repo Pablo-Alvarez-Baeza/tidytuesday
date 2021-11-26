@@ -65,10 +65,11 @@ plot +
     plot.background = element_rect(fill = "grey98", color = "grey98"),
     panel.background = element_rect(fill = "#EAEAEA", color = "#EAEAEA"),
     strip.text = element_text(hjust = 0,
-                              size = 18,
+                              size = 20,
                               face = "bold",
                               margin = margin(t = 12,
                                               l = 8)),
+    panel.spacing = unit(2, "lines"),
     strip.background = element_rect(fill = "#EAEAEA",
                                     color = "#EAEAEA"),
     plot.title = element_text(
