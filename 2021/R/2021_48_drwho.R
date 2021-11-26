@@ -33,11 +33,12 @@ imdb <- imdb |>
 
 plot <- imdb |> 
   ggplot(aes(ep_num, rating))  + 
-  geom_line(color = "#14279B") +
+  geom_line(color = "#14279B",
+            size = 1.2) +
   geom_hline(
     yintercept = 5.5,
     color = "white",
-    size = .3,
+    size = .5,
   ) +
   facet_wrap(~ season_label, scales='free')
 
@@ -56,7 +57,7 @@ plot +
        caption = "Visualization by Pablo Alvarez • TidyTuesday | 2021 - Week 48 • IMDb ratings are on a scale from 1 - 10 with 1 meaning the title was terrible and 10 meaning it was excellent.") +
   theme(
     axis.text.x = element_blank(),
-    axis.text.y = element_text(size = 5, margin = margin(r = 1),
+    axis.text.y = element_text(size = 17, margin = margin(r = 5),
                                color = "grey40"),
     axis.ticks = element_blank(),
     panel.grid = element_blank(),
@@ -64,34 +65,33 @@ plot +
     plot.background = element_rect(fill = "grey98", color = "grey98"),
     panel.background = element_rect(fill = "#EAEAEA", color = "#EAEAEA"),
     strip.text = element_text(hjust = 0,
-                              size = 8,
+                              size = 18,
                               face = "bold",
-                              margin = margin(t = 6,
-                                              l = 4)),
+                              margin = margin(t = 12,
+                                              l = 8)),
     strip.background = element_rect(fill = "#EAEAEA",
                                     color = "#EAEAEA"),
     plot.title = element_text(
       color = "black",
       face = "bold",
-      size = 20,
-      margin = margin(t = 5)
+      size = 32,
+      margin = margin(t = 15)
     ),
     plot.subtitle = element_markdown(
       color = "grey30",
-      face = "bold",
-      size = 8,
+      size = 20,
       lineheight = 1.35,
-      margin = margin(t = 5, b = 10)
+      margin = margin(t = 15, b = 40)
     ),
     plot.title.position = "plot",
     plot.caption.position = "plot",
     plot.caption = element_text(
-      size = 5,
+      size = 13,
       color = "grey30",
       lineheight = 1.2,
       hjust = 0,
-      margin = margin(t = 5)
+      margin = margin(t = 40)
     )
   )
 
-ggsave("tidytuesday_2021_w48.png", width = 10, height = 8, units = "in", dpi = 320)
+ggsave("tidytuesday_2021_w48.png", width = 20, height = 12, units = "in", dpi = 320)
