@@ -94,4 +94,4 @@ plot +
     )
   )
 
-ggsave("tidytuesday_2021_w48.png", width = 12, height = 6, dpi = 320)
+ggsave("tidytuesday_2021_w48.png", width = 10, height = 10, units = "in", dpi = 320)
