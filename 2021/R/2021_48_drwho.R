@@ -5,7 +5,7 @@ font_add_google("Lato")
 
 # Get the data
 tt <- tidytuesdayR::tt_load('2021-11-23')
-tidytuesdayR::readme(tt)
+#tidytuesdayR::readme(tt)
 
 # Data frames
 directors <- tt$directors
@@ -24,10 +24,12 @@ imdb <- imdb |>
                                levels = c("Season 1", "Season 2", "Season 3",
                                           "Season 4", "Season 5", "Season 6",
                                           "Season 7", "Season 8", "Season 9",
-                                          "Season 10", "Season 11", "Season 12"), ordered = TRUE))
+                                          "Season 10", "Season 11", "Season 12"),
+                               ordered = TRUE))
 
-# Base graph -------------------------------------------------------------
-imdb |> count(season)
+
+# Basic graph -------------------------------------------------------------
+
 
 plot <- imdb |> 
   ggplot(aes(ep_num, rating))  + 
@@ -37,9 +39,10 @@ plot <- imdb |>
     color = "white",
     size = .3,
   ) +
-  facet_wrap(~ season_label)
+  facet_wrap(~ season_label, scales='free')
 
 
+# Final chart
 theme_set(theme_minimal(base_family = "Lato"))
 
 plot +
@@ -48,12 +51,12 @@ plot +
                      labels = c(1, rep("", 8), 5.5, rep("", 8), 10)) +
   labs(x = NULL,
        y = NULL,
-       title = "Dr. Who",
+       title = "Doctor Who",
        subtitle = "Seasons IMDb rating over time",
-       caption = "Visualization by Pablo Alvarez • TidyTuesday | 2021 - Week 48") +
+       caption = "Visualization by Pablo Alvarez • TidyTuesday | 2021 - Week 48 • IMDb ratings are on a scale from 1 - 10 with 1 meaning the title was terrible and 10 meaning it was excellent.") +
   theme(
     axis.text.x = element_blank(),
-    axis.text.y = element_text(size = 7, margin = margin(r = 1),
+    axis.text.y = element_text(size = 5, margin = margin(r = 1),
                                color = "grey40"),
     axis.ticks = element_blank(),
     panel.grid = element_blank(),
@@ -90,3 +93,5 @@ plot +
       margin = margin(t = 5)
     )
   )
+
+ggsave("tidytuesday_2021_w48.png", width = 12, height = 6, dpi = 320)
