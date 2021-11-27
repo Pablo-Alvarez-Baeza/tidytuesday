@@ -53,8 +53,8 @@ plot +
   labs(x = NULL,
        y = NULL,
        title = "Doctor Who",
-       subtitle = "Seasons IMDb rating over time",
-       caption = "Visualization by Pablo Alvarez • TidyTuesday | 2021 - Week 48 • IMDb ratings are on a scale from 1 - 10 with 1 meaning the title was terrible and 10 meaning it was excellent.") +
+       subtitle = "Episodes IMDb rating over time by season",
+       caption = "Visualization by Pablo Alvarez • Data from TidyTuesday | 2021 - Week 48 • IMDb ratings are on a scale from 1 - 10 with 1 meaning the title was terrible and 10 meaning it was excellent.") +
   theme(
     axis.text.x = element_blank(),
     axis.text.y = element_text(size = 17, margin = margin(r = 5),
