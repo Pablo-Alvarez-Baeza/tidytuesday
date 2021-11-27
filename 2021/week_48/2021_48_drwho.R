@@ -34,11 +34,11 @@ imdb <- imdb |>
 plot <- imdb |> 
   ggplot(aes(ep_num, rating))  + 
   geom_line(color = "#14279B",
-            size = 1.2) +
+            size = 1.5) +
   geom_hline(
     yintercept = 5.5,
     color = "white",
-    size = .5,
+    size = 1,
   ) +
   facet_wrap(~ season_label, scales='free')
 
