@@ -4,5 +4,9 @@ p_load(tidyverse, tidytuesdayR)
 
 # Get the data ------------------------------------------------------------
 
-tt <- tt_load('2021-11-30')
+tt <- tidytuesdayR::tt_load('2021-11-30')
+matches <- tt$matches
+
+matches |> View()
+
 
