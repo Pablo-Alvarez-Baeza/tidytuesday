@@ -1,5 +1,5 @@
 library(pacman)
-p_load(tidyverse, tidytuesdayR, showtext)
+p_load(tidyverse, tidytuesdayR, showtext, ggtext)
 
 font_add_google("Lato")
 
@@ -38,10 +38,12 @@ plot <- teams_played_wins |>
   mutate(label_y = cumsum(games) - 0.5 * games) |> 
   ungroup() |> 
   ggplot(aes(team, games, fill = category)) +
-  geom_col(aes(fct_reorder(team, wins_value))) +
-  geom_text(aes(y = label_y,
-                label = games),
-            size = 2) +
+  geom_col(aes(fct_reorder(team, wins_value)),
+           color = "grey75",
+           size = .1) +
+  geom_text(aes(y = label_y, label = games),
+            size = 3,
+            color = "grey60") +
   coord_flip()
 
 
@@ -50,8 +52,44 @@ theme_set(theme_minimal(base_family = "Lato"))
 
 plot + 
   labs(x = NULL,
-       y = NULL) +
+       y = NULL,
+       title = "This is the title",
+       subtitle = "This is the subtitle",
+       caption= "Caption goes here") +
+  scale_y_continuous(expand = c(0, 0)) +
+  scale_fill_manual(values = c("white", "#185ADB")) +
   theme(axis.text.x = element_blank(),
+        axis.text.y = element_text(color = "grey50",
+                                   face = "bold"),
         axis.ticks = element_blank(),
         panel.grid = element_blank(),
-        plot.margin = margin(c(20, 40, 20, 40)))
+        plot.margin = margin(c(20, 40, 20, 40)),
+        legend.position = "none",
+        # Customize title appearance
+        plot.title = element_text(
+          color = "grey10", 
+          size = 28, 
+          face = "bold",
+          margin = margin(t = 15)
+        ),
+        # Customize subtitle appearance
+        plot.subtitle = element_markdown(
+          color = "grey30", 
+          size = 16,
+          lineheight = 1.35,
+          margin = margin(t = 15, b = 40)
+        ),
+        # Title and caption are going to be aligned
+        plot.title.position = "plot",
+        plot.caption.position = "plot",
+        plot.caption = element_text(
+          color = "grey30", 
+          size = 13,
+          lineheight = 1.2, 
+          hjust = 0,
+          margin = margin(t = 40) # Large margin on the top of the caption.
+        ) 
+  )
+
+
+        
