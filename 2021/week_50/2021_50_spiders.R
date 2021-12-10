@@ -1,8 +1,17 @@
+# Useful information ------------------------------------------------------
+# A scientific article about widow spiders from 2021.
+# https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8553018/
+
+# A useful tutorial teaching how to build a basic circle packing chart with only one level of hierarchy.
+# https://www.r-graph-gallery.com/305-basic-circle-packing-with-one-level.html
+
+
 # Load packages -----------------------------------------------------------
 library(pacman)
-p_load(tidyverse, packcircles, tidytuesdayR, ggtext)
+p_load(tidyverse, packcircles, tidytuesdayR, showtext)
 
 font_add_google("Lato")
+showtext_auto()
 
 
 # Load data ---------------------------------------------------------------
@@ -11,18 +20,12 @@ spiders <- tt$spiders
 
 
 # Data wrangling ----------------------------------------------------------
-spiders |>
-  filter(family == "Theridiidae") |> 
-  group_by(genus) |> 
-  count() |>
-  ungroup() |> 
-  mutate(total = sum(n),
-         perc = round(n / total, 3) * 100) |> View()
-  
-  filter(genus == "Latrodectus")
 
-  summarize(total = sum(n),
-            perc = round(n / total, 3))
+# There're 4232 different spider genus. Latrodectus (widow spiders), 
+# represent 1 / 4232 
+spiders |> 
+  distinct(genus)
+
 
 spiders_genus <- spiders |> 
   select(family, genus) |> 
@@ -30,21 +33,15 @@ spiders_genus <- spiders |>
          position = if_else(genus == "Latrodectus", 1, 0)) 
 
 
-
 spider_genus <- spiders_genus |> 
   count(genus, color, position) |> 
   # Arranging rows by position so that Latrodectus is located in row 1.
-  # The first value is the one that goes in the middle of the plot.
+  # The first value is the one that goes in the middle of the plot by default.
   arrange(desc(position)) |> 
   rename(value = n,
          label = genus)  
 
-spider_genus |> 
-  mutate(total = sum(value),
-         perc = round(value / total, 4) * 100) |> View()
   
-
-
 # Generate the layout. This function return a data frame with one line per bubble. 
 # It gives its center (x and y) and its radius, proportional of the value.
 packing <- circleProgressiveLayout(spider_genus$value) 
@@ -78,36 +75,40 @@ plot <- ggplot(data = dat.gg) +
 theme_set(theme_void(base_family = "Lato"))
 
 plot +
-  labs(title = "A") +
+  labs(title = "<span style='color:red'>Widow spiders</span> make up less than 1% of all spiders",
+       subtitle = "yet their venom has transformed this small group into a major symbol of arachnophobia in many cultures worldwide",
+       caption= "Visualization by Pablo Alvarez • Data from TidyTuesday | 2021 - Week 50<br>Each bubble represents a different spider genus. A bubble's size represents the number of species in that genus.") +
   theme(
-    plot.margin = margin(c(5, 5, 5, 5)),
+    plot.margin = margin(c(20, 20, 20, 20)),
     plot.background = element_rect(fill = "black", color = "black"),
     panel.background = element_rect(fill = "black", color = "black"),
     # Customize title appearance
     plot.title = element_markdown(
-      color = "grey25", 
-      size = 38, 
+      color = "white", 
+      size = 40, 
       face = "bold",
+      hjust = 0.5,
       margin = margin(t = 15)
     ),
     # Customize subtitle appearance
     plot.subtitle = element_markdown(
-      color = "grey50",
-      size = 26,
-      lineheight = 1.35,
-      margin = margin(t = 15, b = 40)
+      color = "white",
+      size = 20,
+      hjust = 0.5,
+      margin = margin(t = 10, b = 40)
     ),
     # Title and caption are going to be aligned
     plot.title.position = "plot",
     plot.caption.position = "plot",
     plot.caption = element_markdown(
-      color = "grey30", 
+      color = "white", 
       size = 13,
       lineheight = 1.2, 
-      hjust = 0,
+      hjust = 0.5,
       margin = margin(t = 40) # Large margin on the top of the caption.
     ) 
   )
-ggsave("tidytuesday_2021_w50.png", width = 10, height = 15, units = "in", dpi = 320)
+
+ggsave("tidytuesday_2021_w50.png", width = 15, height = 15, units = "in", dpi = 320)
 
 
