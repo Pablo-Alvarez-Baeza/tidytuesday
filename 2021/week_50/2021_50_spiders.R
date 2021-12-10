@@ -1,6 +1,8 @@
 # Load packages -----------------------------------------------------------
 library(pacman)
-p_load(tidyverse, packcircles, tidytuesdayR)
+p_load(tidyverse, packcircles, tidytuesdayR, ggtext)
+
+font_add_google("Lato")
 
 
 # Load data ---------------------------------------------------------------
@@ -9,17 +11,38 @@ spiders <- tt$spiders
 
 
 # Data wrangling ----------------------------------------------------------
+spiders |>
+  filter(family == "Theridiidae") |> 
+  group_by(genus) |> 
+  count() |>
+  ungroup() |> 
+  mutate(total = sum(n),
+         perc = round(n / total, 3) * 100) |> View()
+  
+  filter(genus == "Latrodectus")
+
+  summarize(total = sum(n),
+            perc = round(n / total, 3))
+
 spiders_genus <- spiders |> 
-  select(label = genus) |> 
-  mutate(color = if_else(label == "Latrodectus", "red", "grey"),
-         position = if_else(label == "Latrodectus", 1, 0)) 
+  select(family, genus) |> 
+  mutate(color = if_else(genus == "Latrodectus", "red", "white"),
+         position = if_else(genus == "Latrodectus", 1, 0)) 
+
+
 
 spider_genus <- spiders_genus |> 
-  count(label, color, position) |> 
+  count(genus, color, position) |> 
   # Arranging rows by position so that Latrodectus is located in row 1.
   # The first value is the one that goes in the middle of the plot.
   arrange(desc(position)) |> 
-  rename(value = n)  
+  rename(value = n,
+         label = genus)  
+
+spider_genus |> 
+  mutate(total = sum(value),
+         perc = round(value / total, 4) * 100) |> View()
+  
 
 
 # Generate the layout. This function return a data frame with one line per bubble. 
@@ -49,4 +72,42 @@ plot <- ggplot(data = dat.gg) +
                show.legend = FALSE) +
   scale_fill_manual(values = data$color) +
   coord_equal() 
+
+
+# Final plot --------------------------------------------------------------
+theme_set(theme_void(base_family = "Lato"))
+
+plot +
+  labs(title = "A") +
+  theme(
+    plot.margin = margin(c(5, 5, 5, 5)),
+    plot.background = element_rect(fill = "black", color = "black"),
+    panel.background = element_rect(fill = "black", color = "black"),
+    # Customize title appearance
+    plot.title = element_markdown(
+      color = "grey25", 
+      size = 38, 
+      face = "bold",
+      margin = margin(t = 15)
+    ),
+    # Customize subtitle appearance
+    plot.subtitle = element_markdown(
+      color = "grey50",
+      size = 26,
+      lineheight = 1.35,
+      margin = margin(t = 15, b = 40)
+    ),
+    # Title and caption are going to be aligned
+    plot.title.position = "plot",
+    plot.caption.position = "plot",
+    plot.caption = element_markdown(
+      color = "grey30", 
+      size = 13,
+      lineheight = 1.2, 
+      hjust = 0,
+      margin = margin(t = 40) # Large margin on the top of the caption.
+    ) 
+  )
+ggsave("tidytuesday_2021_w50.png", width = 10, height = 15, units = "in", dpi = 320)
+
 
