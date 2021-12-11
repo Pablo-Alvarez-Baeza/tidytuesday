@@ -8,7 +8,7 @@
 
 # Load packages -----------------------------------------------------------
 library(pacman)
-p_load(tidyverse, packcircles, tidytuesdayR, showtext)
+p_load(tidyverse, packcircles, tidytuesdayR, showtext, ggtext)
 
 font_add_google("Lato")
 showtext_auto()
@@ -33,7 +33,7 @@ spiders_genus <- spiders |>
          position = if_else(genus == "Latrodectus", 1, 0)) 
 
 
-spider_genus <- spiders_genus |> 
+spiders_genus <- spiders_genus |> 
   count(genus, color, position) |> 
   # Arranging rows by position so that Latrodectus is located in row 1.
   # The first value is the one that goes in the middle of the plot by default.
@@ -44,7 +44,7 @@ spider_genus <- spiders_genus |>
   
 # Generate the layout. This function return a data frame with one line per bubble. 
 # It gives its center (x and y) and its radius, proportional of the value.
-packing <- circleProgressiveLayout(spider_genus$value) 
+packing <- circleProgressiveLayout(spiders_genus$value) 
 
 
 # Multiplying the radius by any number below 0 to decrease bubble size and therefore
@@ -53,7 +53,7 @@ packing$radius <- 0.95 * packing$radius
 
 
 # Adding packing information to the initial data frame.
-data <- cbind(spider_genus, packing) 
+data <- cbind(spiders_genus, packing) 
 
 
 # The next step is to go from one center + a radius to the coordinates of a circle that
@@ -102,7 +102,7 @@ plot +
     plot.caption.position = "plot",
     plot.caption = element_markdown(
       color = "white", 
-      size = 13,
+      size = 14,
       lineheight = 1.2, 
       hjust = 0.5,
       margin = margin(t = 40) # Large margin on the top of the caption.
