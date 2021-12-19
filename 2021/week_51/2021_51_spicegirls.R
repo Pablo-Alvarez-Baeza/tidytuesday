@@ -1,6 +1,6 @@
 # Load packages -----------------------------------------------------------
 library(pacman)
-p_load(tidyverse, tidytuesdayR, showtext, ggtext)
+p_load(tidyverse, tidytuesdayR, showtext, ggtext, patchwork, cowplot)
 
 font_add_google("Lato")
 showtext_auto()
@@ -10,10 +10,9 @@ showtext_auto()
 tt <- tt_load('2021-12-14')
 studio_album_tracks <- tt$studio_album_tracks
 
-studio_album_tracks |> View()
 studio_album_tracks |> glimpse()
 
-dance_df <- studio_album_tracks |> 
+df_dance <- studio_album_tracks |> 
   arrange(album_release_year) |>
   select(album_release_year,album_name,track_name, track_number, danceability) |> 
   mutate(album_name = factor(album_name),
@@ -28,54 +27,94 @@ dance_df <- studio_album_tracks |>
                                   album_name == "Forever" & danceability_max == 1 ~ 3,
                                   TRUE ~ 4)))
 
-dance_df |> View()
 
 # Basic plot --------------------------------------------------------------
 
 
-plot <- dance_df |> 
+plot <- df_dance |> 
   ggplot(aes(track_all_number, danceability, fill = group)) +
   geom_col() +
-  ylim(-.25, 1.2) +
+  ylim(-.75, 1.2) +
   coord_polar(start = 0)
   
 
-plot +
+plot <- plot +
   labs(x = NULL,
-       y = NULL) +
-  scale_fill_manual(values = c("pink", "yellow", "green", "grey90")) +
+       y = NULL,
+       title = "Spice Girls",
+       subtitle = "The most danceable tracks by album",
+       caption = "Visualization by Pablo Alvarez • Data from TidyTuesday | 2021 - Week 51") +
+  scale_fill_manual(values = c("#00028C", "#FFEF78", "#47D0BD", "grey85")) +
   theme_minimal() +
-  theme(panel.grid = element_blank(),
+  theme(text = element_text(family = "Lato"),
+        panel.grid = element_blank(),
         axis.text = element_blank(),
-        legend.position = "none"
+        legend.position = "none",
+        # Customize title appearance
+        plot.title = element_text(
+          color = "grey25", 
+          size = 20, 
+          face = "bold"
+        ),
+        # Customize subtitle appearance
+        plot.subtitle = element_text(
+          color = "grey50",
+          size = 12,
+          margin = margin(t = 5, b = 5)
+        ),
+        # Title and caption are going to be aligned
+        plot.title.position = "plot",
+        plot.caption.position = "plot",
+        plot.caption = element_text(
+          color = "grey30", 
+          size = 8,
+          hjust = 0,
+          margin = margin(t = 40) # Large margin on the top of the caption.
+        ) 
   )
-  
 
-# Libraries
-library(tidyverse)
 
-# Create dataset
-data <- data.frame(
-  id=seq(1,60),
-  individual=paste( "Mister ", seq(1,60), sep=""),
-  value=sample( seq(10,100), 60, replace=T)
-)
 
-# Make the plot
- ggplot(data, aes(x=as.factor(id), y=value)) +       # Note that id is a factor. If x is numeric, there is some space between the first bar
+plot <- ggdraw(plot) +
+  draw_image("PngItem_195841.png",
+             x = .5, y = .5013,
+             hjust = .5, vjust = .5,
+             width = 0.25, height = 0.25)
+
+# Table -------------------------------------------------------------------
+
+df_dance |> glimpse()
   
-  # This add the bars with a blue color
-  geom_bar(stat="identity", fill=alpha("blue", 0.3)) +
-  
-  # Limits of the plot = very important. The negative value controls the size of the inner circle, the positive one is useful to add size over each bar
-  ylim(-100,200) +
-   coord_polar(start = 0) +
-  # Custom the theme: no axis title and no cartesian grid
+plot2 <- df_dance |> 
+  ggplot(aes(y = as.numeric(track_all_number), color = group)) +
+  geom_text(x = 1.5, label = df_dance$album_release_year,
+           size = 2, family = "Lato", hjust = 0) +
+  geom_text(x = 2, label = df_dance$album_name,
+            size = 2, family = "Lato", hjust = 0) +
+  geom_text(x = 2.5, label = df_dance$track_name,
+            size = 2, family = "Lato", hjust = 0) +
+  geom_text(x = 3.5, label = df_dance$danceability,
+            size = 2, family = "Lato", hjust = 0) +
+  annotate("text", x = 1.5, y = 32, label = "Release year",
+           size = 2, family = "Lato", hjust = 0) +
+  annotate("text", x = 2, y = 32, label = "Album",
+           size = 2, family = "Lato", hjust = 0) +
+  annotate("text", x = 2.5, y = 32, label = "Track",
+           size = 2, family = "Lato", hjust = 0) +
+  annotate("text", x = 3.5, y = 32, label = "Danceability",
+           size = 2, family = "Lato", hjust = 0.5) +
+  scale_x_continuous(limits = c(1, 4)) +
+  scale_y_continuous(limits = c(1, 36)) +
+  scale_color_manual(values = c("#00028C", "#FFEF78", "#47D0BD", "grey85")) +
+  theme_void() +
   theme(
-    panel.background = element_rect(color = "black"),
-    panel.grid = element_blank()# This remove unnecessary margin around plot
-  ) 
-  
-  # This makes the coordinate polar instead of cartesian.
-  
-p
+    text = element_text(family = "Lato"),
+    legend.position = "none"
+  )
+
+
+plot | plot2 
+
+ggsave("tidytuesday_2021_w49.png", width = 12, height = 10, units = "in", dpi = 320)
+
+
