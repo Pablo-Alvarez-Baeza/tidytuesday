@@ -136,6 +136,6 @@ plot_final <- plot | plot2 +
              hjust = 4.2, vjust = .45,
              width = 0.2, height = 0.2)
 
-ggsave("tidytuesday_2021_w49.png", width = 10, height = 8, units = "in", dpi = 320)
+ggsave("tidytuesday_2021_w51.png", width = 10, height = 8, units = "in", dpi = 320)
 
 
