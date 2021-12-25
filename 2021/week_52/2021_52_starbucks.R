@@ -35,7 +35,7 @@ df |>
   scale_discrete_manual(aesthetics = "stroke", values = c("1" = .8, "2" = .5)) +
   labs(x = "Calories",
        y = "Sugar grams",
-       title = "<span style='font-size:36pt'>**23%**</span> of Starbucks drinks exceed WHO recommendations for daily sugar intake",
+       title = "<span style='font-size:36pt'>**23%**</span> of Starbucks drinks exceed WHO recommendations for daily sugar intake.",
        subtitle = "268 drinks contained more than 50 grams of free sugar.",
        caption = "Visualization by Pablo Alvarez • Data from Starbucks Coffee Company | TidyTuesday 2021 - Week 52<br>Sugar intake recommendations based on a 2,000 calorie diet.") +
   theme_minimal() +
