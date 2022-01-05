@@ -102,4 +102,4 @@ ggdraw(plot) +
              hjust = 4.2, vjust = .45,
              width = 0.2, height = 0.2)
 
-ggsave("tidytuesday_2022_w1.png", width = 10, height = 8.5, units = "in", dpi = 320)
+ggsave("tidytuesday_2022_w1.png", width = 8, height = 8.5, units = "in", dpi = 320)
