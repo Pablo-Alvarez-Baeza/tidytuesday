@@ -13,8 +13,7 @@ df <- data_raw |>
   mutate(group = factor(if_else(jugadores != "Lionel Messi", 0, 1)))
 
 
-
-
+# Basic plot --------------------------------------------------------------
 plot <- df |> 
   ggplot(aes(goles, fill = group, color = group)) +
   geom_dotplot(binwidth = 6,
@@ -96,10 +95,11 @@ plot <- plot +
     )
 
 
+# Final plot --------------------------------------------------------------
 ggdraw(plot) +
   draw_image("messi.png",
              x = 1.50, y = .55,
              hjust = 4.2, vjust = .45,
-             width = 0.2, height = 0.2)
+             width = 0.2, height = 0.2) 
 
 ggsave("tidytuesday_2022_w1.png", width = 10, height = 8.5, units = "in", dpi = 320)
