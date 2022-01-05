@@ -57,7 +57,7 @@ plot <- plot +
   scale_fill_manual(values = c("grey75", "#A50044")) +
   scale_color_manual(values = c("grey75", "#A50044")) +
   labs(x = "Players total goals scored",
-       title = "Messi, La Liga all-time top scorer: 478 goals",
+       title = "Messi, La Liga all-time top scorer: 474 goals",
        subtitle = "Number of La Liga top scorers by goals, 1928/29 - 2020/21",
        caption = "Visualization by Pablo Alvarez | Data from Transfermarkt") +
   theme_minimal(base_family = "Lato") +
