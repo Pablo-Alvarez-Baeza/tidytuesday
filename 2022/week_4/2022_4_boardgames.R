@@ -6,6 +6,38 @@ tt <- tidytuesdayR::tt_load('2022-01-25')
 ratings <- tt$ratings
 details <- tt$details
 
+
+ categories <- details |> 
+   rename(category = boardgamecategory) |> 
+   filter(!is.na(category)) |> 
+   select(id, category) |> 
+   mutate(category = str_sub(category, 2, -2),
+          n_categories = ifelse(is.na(category), 0,
+                                 lengths(str_split(category, ","))))   
+   
+ 
+categories |> 
+   separate(category, paste0("cat", 1:max(categories$n_categories)), ",") |> 
+  select(-n_categories) %>% 
+  pivot_longer(!id, names_to = "category", values_drop_na = TRUE) |> 
+  select(id, category = value) %>% 
+  mutate(category = parse_character(category, trim_ws = TRUE)) %>% 
+  mutate(category = str_sub(category, 2, -2))
+
+
+details |>  
+  filter(!is.na(category)) |> 
+  select(id, category) |> 
+  mutate(category = str_sub(category, 2, -2)) |> 
+  mutate(n_categories = ifelse(is.na(category), 0,
+                                lengths(str_split(category, ",")))) |> 
+  separate(category, into = paste0("cat", 1:max(n_categories)), ",") |> 
+  select(-nb_categories) %>% 
+  pivot_longer(!id, names_to = "category", values_drop_na = TRUE) %>% 
+  select(id, category = value) %>% 
+  mutate(category = parse_character(category, trim_ws = TRUE)) %>% 
+  mutate(category = str_sub(category, 2, -2))
+
 ratings |> glimpse()
 details |> glimpse()
 
