@@ -1,5 +1,6 @@
 # tidytuesday
  
+![](2022/week_4/tidytuesday_2022_w4.png)
 ![](2022/week_3/tidytuesay_2022_w3.png)
 ![](2022/week_2/tidytuesday_2022_w2.png)
 ![](2022/week_1/tidytuesday_2022_w1.png)
