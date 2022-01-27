@@ -41,23 +41,23 @@ details_filtered |>
   scale_x_continuous(limits = c(1929, 2023),
                      breaks = seq(1930, 2021, 10)) +
   coord_cartesian(expand = c(0, 0)) +
-  annotate(geom = "segment", x = 1933, xend = 1933, y = 0, yend = 250, size = .3, color = "white") +
-  annotate(geom = "text", x = 1933, y = 270, hjust = 0, size = 4, color = "white", label = "Monopoly", family = "Lato", fontface = "bold") + 
-  annotate(geom = "segment", x = 1948, xend = 1948, y = 0, yend = 250, size = .3, color = "white") +
-  annotate(geom = "text", x = 1948, y = 270, hjust = 0, size = 4, color = "white", label = "Scrabble", family = "Lato", fontface = "bold") +
-  annotate(geom = "segment", x = 1959, xend = 1959, y = 0, yend = 250, size = .3, color = "white") +
-  annotate(geom = "text", x = 1959, y = 270, hjust = 0, size = 4, color = "white", label = "Risk", family = "Lato", fontface = "bold") +
-  annotate(geom = "segment", x = 1983, xend = 1983, y = 0, yend = 250, size = .3, color = "white") +
-  annotate(geom = "text", x = 1983, y = 270, hjust = 1, size = 4, color = "white", label = "Jenga", family = "Lato", fontface = "bold") +
-  annotate(geom = "segment", x = 1985, xend = 1985, y = 0, yend = 250, size = .3, color = "white") +
-  annotate(geom = "text", x = 1985, y = 270, hjust = 0, size = 4, color = "white", label = "Pictionary", family = "Lato", fontface = "bold") +
-  annotate(geom = "segment", x = 1995, xend = 1995, y = 0, yend = 300, size = .3, color = "white") +
-  annotate(geom = "text", x = 1995, y = 320, hjust = 0, size = 4, color = "white", label = "Catan", family = "Lato", fontface = "bold") +
-  annotate(geom = "segment", x = 2008, xend = 2008, y = 0, yend = 800, size = .3, color = "white") +
-  annotate(geom = "text", x = 2008, y = 820, hjust = 1, size = 4, color = "white", label = "Pandemic", family = "Lato", fontface = "bold") +
-  annotate(geom = "segment", x = 2017, xend = 2017, y = 0, yend = 1250, size = .3, color = "white") +
-  annotate(geom = "segment", x = 2015, xend = 2017, y = 1250, yend = 1250, size = .3, color = "white") +
-  annotate(geom = "text", x = 2015, y = 1270, hjust = 1, size = 4, color = "white", label = "Azul", family = "Lato", fontface = "bold") +
+  annotate(geom = "segment", x = 1933, xend = 1933, y = 0, yend = 250, size = .5, color = "white") +
+  annotate(geom = "text", x = 1933, y = 270, hjust = 0, size = 5, color = "white", label = "Monopoly", family = "Lato", fontface = "bold") + 
+  annotate(geom = "segment", x = 1948, xend = 1948, y = 0, yend = 250, size = .5, color = "white") +
+  annotate(geom = "text", x = 1948, y = 270, hjust = 0, size = 5, color = "white", label = "Scrabble", family = "Lato", fontface = "bold") +
+  annotate(geom = "segment", x = 1959, xend = 1959, y = 0, yend = 250, size = .5, color = "white") +
+  annotate(geom = "text", x = 1959, y = 270, hjust = 0, size = 5, color = "white", label = "Risk", family = "Lato", fontface = "bold") +
+  annotate(geom = "segment", x = 1983, xend = 1983, y = 0, yend = 250, size = .5, color = "white") +
+  annotate(geom = "text", x = 1983, y = 270, hjust = 1, size = 5, color = "white", label = "Jenga", family = "Lato", fontface = "bold") +
+  annotate(geom = "segment", x = 1985, xend = 1985, y = 0, yend = 250, size = .5, color = "white") +
+  annotate(geom = "text", x = 1985, y = 270, hjust = 0, size = 5, color = "white", label = "Pictionary", family = "Lato", fontface = "bold") +
+  annotate(geom = "segment", x = 1995, xend = 1995, y = 0, yend = 300, size = .5, color = "white") +
+  annotate(geom = "text", x = 1995, y = 320, hjust = 0, size = 5, color = "white", label = "Catan", family = "Lato", fontface = "bold") +
+  annotate(geom = "segment", x = 2008, xend = 2008, y = 0, yend = 800, size = .5, color = "white") +
+  annotate(geom = "text", x = 2008, y = 820, hjust = 1, size = 5, color = "white", label = "Pandemic", family = "Lato", fontface = "bold") +
+  annotate(geom = "segment", x = 2017, xend = 2017, y = 0, yend = 1250, size = .5, color = "white") +
+  annotate(geom = "segment", x = 2015, xend = 2017, y = 1250, yend = 1250, size = .5, color = "white") +
+  annotate(geom = "text", x = 2015, y = 1270, hjust = 1, size = 5, color = "white", label = "Azul", family = "Lato", fontface = "bold") +
   labs(title = "The Rise of Board Games",
        subtitle = "<span style='font-size:22pt; color:#FC28FB'>**+20,000**</span> board games have been published since 1930",
        caption = "Visualization by Pablo Alvarez | Data from Kaggle") +
@@ -69,7 +69,7 @@ details_filtered |>
     plot.margin = margin(10, 10, 10, 10),
     axis.text.y = element_blank(),
     axis.text.x = element_text(color = "white",
-                               size = 10,
+                               size = 12,
                                margin = margin(10)),
     plot.title = element_text(
       color = "white",
