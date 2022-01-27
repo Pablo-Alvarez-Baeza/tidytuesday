@@ -74,12 +74,12 @@ details_filtered |>
     plot.title = element_text(
       color = "white",
       face = "bold",
-      size = 36,
+      size = 42,
       margin = margin(40)
     ),
     plot.subtitle = element_markdown(
       color = "white",
-      size = 20,
+      size = 24,
       margin = margin(10)
     ),
     plot.caption = element_text(
