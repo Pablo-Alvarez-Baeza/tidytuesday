@@ -1,5 +1,5 @@
 library(pacman)
-p_load(tidyverse, janitor, showtext, ggtext)
+p_load(tidyverse, janitor, ggoforce, showtext, ggtext)
 
 font_add(family = "Regular",
          regular = "Abdullah-rggX7.otf")
@@ -42,13 +42,13 @@ ggplot() +
   ylim(-10, 55) +
   xlim(-6, 36) +
   annotate(geom = "segment", x = -6, xend = 36, y = 50, yend = 50, color = "black", size = 10) +
-  annotate(geom = "richtext", x = 15, y = 49.5, hjust = .5, label = "Dalmatian <span style=color:red>Traits</span>", color = "white", family = "Abdullah", fill = NA, label.color = NA) +
+  annotate(geom = "richtext", x = 15, y = 49.5, hjust = .5, label = "Dalmatians <span style=color:red>Traits</span>", color = "white", family = "Abdullah", fill = NA, label.color = NA) +
   annotate(geom = "text", x = 15, y = 43, hjust = .5, label = "Highly energetic and playful, Dalmatians thrive on human companionship.\nThese dogs can be well trained and make good watchdogs.", color = "black", family = "Lato", size = 1) +
   annotate(geom = "text", x = 0.25, y = -8, hjust = 0, label = "Affectionate with family\n5/5", color = "red", size = 1, family = "Lato", fontface = "bold") +
   annotate(geom = "text", x = 28.25, y = 30, hjust = 0, label = "Drooling level\n2/5", color = "red", size = 1, family = "Lato", fontface = "bold") +
   annotate(geom = "text", x = 8.25, y = 32, hjust = 0, label = "Playfulness level\n4/5", color = "red", size = 1, family = "Lato", fontface = "bold") +
-  annotate(geom = "text", x = 32.25, y = -7, hjust = 0, label = "Energy Level\n4/5", color = "red", size = 1, family = "Lato", fontface = "bold") +
-  annotate(geom = "text", x = 28.25, y = 8, hjust = 0, label = "Watchdog Protective Nature\n4/5", color = "red", size = 1, family = "Lato", fontface = "bold") +
+  annotate(geom = "text", x = 32.25, y = -7, hjust = 0, label = "Energy level\n4/5", color = "red", size = 1, family = "Lato", fontface = "bold") +
+  annotate(geom = "text", x = 28.25, y = 8, hjust = 0, label = "Watchdog protective nature\n4/5", color = "red", size = 1, family = "Lato", fontface = "bold") +
   annotate(geom = "segment", x = 8, xend = 8, y = 28, yend = 32, color = "red", size = .09) +
   annotate(geom = "segment", x = 28, xend = 28, y = 26, yend = 30, color = "red", size = .09) +
   annotate(geom = "segment", x = 0, xend = 0, y = -8, yend = -4, color = "red", size = .09) +
