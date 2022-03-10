@@ -34,7 +34,8 @@ erasmus_spain <- erasmus |>
                                                  sending_country_code == "North Macedonia" ~ "North\nMacedonia",
                                                  sending_country_code == "Palestinian Territories" ~ "Palestinian\nTerritories",
                                                  sending_country_code == "United Kingdom" ~ "United\nKingdom",
-                                                 TRUE ~ sending_country_code)) |> 
+                                                 TRUE ~ sending_country_code),
+         receiving_country_code = if_else(receiving_country_code == "Spain", "SPAIN", receiving_country_code)) |> 
   arrange(sending_country_code) |> 
   graph_from_data_frame(directed = FALSE)
 
