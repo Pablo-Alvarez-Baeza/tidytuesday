@@ -45,7 +45,7 @@ erasmus_spain |>
   ggraph(layout = "linear", circular = TRUE) +
   geom_edge_arc(aes(edge_width = students), edge_color = "white") +
   geom_node_text(aes(label = name), size = 4, family = "Lato bold", lineheight = .25) +
-  labs(title = "<span style='color:white;font-size:32pt'>SPAIN:</span> the destination most preferred by European Erasmus students",
+  labs(title = "<span style='color:white;font-size:32pt'>SPAIN:</span> the destination most preferred by Erasmus students",
        subtitle = "The weather, the social life, and the widespread belief that Spaniards are open and friendly draw thousands of foreigners every year",
        caption = "Visualization by Pablo Alvarez | Data from Data.Europa") +
   theme_void() +
