@@ -1,6 +1,6 @@
 # tidytuesday
 
-![](22022/week_12/2012_12_usbabynames_figma.png)
+![](2022/week_12/2012_12_usbabynames_figma.png)
 ![](2022/week_10/tidytuesday_2022_w10.png)
 ![](2022/week_8/tidytuesday_2022_w8_figma.png) 
 ![](2022/week_7/2022_7_duboischallenge.png)
