@@ -1,1 +1,1 @@
-2012_12_usbabynames_figma.png
+![](2012_12_usbabynames_figma.png)
