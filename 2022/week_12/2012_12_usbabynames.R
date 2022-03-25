@@ -89,3 +89,125 @@ ggplot(princesses, aes(x = year, y = total)) +
   )
 
 ggsave("tidytuesday_2022_w2.png", width = 16.5, height = 11.7, units = "in", dpi = 320)
+
+
+# Small multiples ---------------------------------------------------------
+princesses_2 <- babynames |> 
+  filter(sex == "F",
+         name %in% c("Snow", "Cinderella", "Aurora", "Ariel", "Belle",
+                     "Jasmine", "Pocahontas", "Mulan", "Tiana",
+                     "Rapunzel", "Merida", "Elsa", "Moana"),
+         year >= 1937) 
+  
+
+princess <- function(princess_name = "x",
+                     princess_year = 1) {
+  babynames |> 
+    filter(sex == "F",
+           name == princess_name,
+           year %in% princess_year) |> 
+    mutate(pct = round(n/lag(n)/10 * 100, 0)) |> 
+    replace_na(list(pct = 0))
+}
+
+snow_white <- princess(princess_name = "Snow",
+                       princess_year = c(1937:1938)) |> 
+  add_row(year = 1935, sex = "F", name = "Snow", n = 0, prop = 0)
+
+cinderella <- princess(princess_name = "Cinderella",
+         princess_year = c(1950:1951)) 
+
+sleeping_beauty <- princess(princess_name = "Aurora",
+                       princess_year = c(1959:1960))
+
+ariel <- princess(princess_name = "Ariel",
+                            princess_year = c(1989:1990))
+
+belle <- princess(princess_name = "Belle",
+                  princess_year = c(1991:1992))
+
+jasmine <- princess(princess_name = "Jasmine",
+                  princess_year = c(1992:1993))
+
+pocahontas <- princess(princess_name = "Pocahontas",
+                    princess_year = c(1995:1996))  
+
+mulan <- princess(princess_name = "Mulan",
+                       princess_year = c(1998:1999))
+
+tiana <- princess(princess_name = "Tiana",
+                  princess_year = c(2009:2010))
+
+rapunzel <- princess(princess_name = "Rapunzel",
+                  princess_year = c(2010:2011))
+
+merida <- princess(princess_name = "Merida",
+                     princess_year = c(2012:2013))
+
+elsa <- princess(princess_name = "Elsa",
+                   princess_year = c(2013:2014))
+
+moana <- princess(princess_name = "Moana",
+                 princess_year = c(2016:2017))
+
+princesses_comparison <- bind_rows(snow_white, cinderella,
+                                   sleeping_beauty, ariel,
+                                   belle, jasmine,
+                                   pocahontas, mulan,
+                                   tiana, rapunzel,
+                                   merida, elsa, moana) |> 
+  select(-c(sex, prop)) |> 
+  group_by(name) |> 
+  mutate(period = c(1:n())) |>
+  group_by(period) |> 
+  arrange(-n) |> 
+  mutate(princess_number = as.double(1:n())) |> 
+  group_by(name) |> 
+  mutate(princess_number = if_else(period == 1, princess_number -.1, princess_number)) |> 
+  ungroup() 
+
+
+princesses_comparison |> 
+  ggplot(aes(princess_number, n)) +
+  geom_col(data = princesses_comparison |> filter(period == 2),
+           width = .5, fill = "#F4A7C2", color = "black") +
+  geom_col(data = princesses_comparison |> filter(period == 1),
+           width = .5, fill = "grey75", color = "black") +
+  scale_y_continuous(breaks = seq(0, 12000, by = 2000),
+                                  labels = scales::comma) +
+  scale_x_continuous(breaks = seq(1, 11, by = 1),
+                     labels = c("Jasmine", "Ariel", "Elsa", "Tiana", "Aurora", "Moana",
+                                "Merida", "Cinderella", "Belle", "Mulan", "Snow")) +
+  coord_cartesian(expand = c(0, 0)) +
+  theme_minimal(base_family = "Lato") +
+  labs(title = "American Baby Girl Names <span style='color:grey75'>before </span> and <span style='color:#F4A7C2'>after </span> Disney Princess Movies",
+       subtitle = "In the <span style='color:#F4A7C2'>year following </span> a Disney princess movie, princess names are more popular",
+       caption = "Visualization by Pablo Alvarez | Data from the 'babynames' R package from Hadley Wickham",
+       x = NULL,
+       y = "Number of girls born in the U.S. with the corresponding princess name") +
+  theme(
+    legend.position = "none",
+    panel.grid = element_blank(),
+    plot.background = element_rect(fill = "#003170", color = "#003170"),
+    panel.background = element_rect(fill = "#003170", color = "#003170"),
+    plot.margin = margin(rep(40, 4)),
+    axis.title.y = element_text(color = "white", angle = 90, size = 12, hjust = 1, margin = margin(r =10)),
+    axis.text = element_text(color = "white"),
+    axis.text.x = element_text(margin = margin(t = 10),
+                               size = 12),
+    axis.text.y = element_text(margin = margin(r = 20),
+                               size = 12),
+    plot.title = element_markdown(color = "white",
+                                  size = 32,
+                                  family = "Lato black"),
+    plot.subtitle = element_markdown(color = "white",
+                                     size = 20,
+                                     lineheight = 1.25,
+                                     margin = margin(t = 10, b = 100)),
+    plot.caption = element_text(color = "white",
+                                size = 12,
+                                margin = margin(t = 60),
+                                hjust = .5)
+  )
+
+ggsave("tidytuesday2_2022_w2.png", width = 16.5, height = 11.7, units = "in", dpi = 320)
