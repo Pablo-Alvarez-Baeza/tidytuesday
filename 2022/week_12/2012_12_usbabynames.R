@@ -91,28 +91,21 @@ ggplot(princesses, aes(x = year, y = total)) +
 ggsave("tidytuesday_2022_w2.png", width = 16.5, height = 11.7, units = "in", dpi = 320)
 
 
-# Small multiples ---------------------------------------------------------
-princesses_2 <- babynames |> 
-  filter(sex == "F",
-         name %in% c("Snow", "Cinderella", "Aurora", "Ariel", "Belle",
-                     "Jasmine", "Pocahontas", "Mulan", "Tiana",
-                     "Rapunzel", "Merida", "Elsa", "Moana"),
-         year >= 1937) 
-  
-
+# Bar graph ---------------------------------------------------------
+# Function for each princess name
 princess <- function(princess_name = "x",
                      princess_year = 1) {
   babynames |> 
     filter(sex == "F",
            name == princess_name,
            year %in% princess_year) |> 
-    mutate(pct = round(n/lag(n)/10 * 100, 0)) |> 
+    mutate(pct =  round((n / lag(n) -1) * 100, 0)) |> 
     replace_na(list(pct = 0))
 }
 
 snow_white <- princess(princess_name = "Snow",
                        princess_year = c(1937:1938)) |> 
-  add_row(year = 1935, sex = "F", name = "Snow", n = 0, prop = 0)
+  add_row(year = 1938, sex = "F", name = "Snow", n = 0, prop = 0)
 
 cinderella <- princess(princess_name = "Cinderella",
          princess_year = c(1950:1951)) 
@@ -121,7 +114,7 @@ sleeping_beauty <- princess(princess_name = "Aurora",
                        princess_year = c(1959:1960))
 
 ariel <- princess(princess_name = "Ariel",
-                            princess_year = c(1989:1990))
+                            princess_year = c(1989:1990)) 
 
 belle <- princess(princess_name = "Belle",
                   princess_year = c(1991:1992))
@@ -139,10 +132,10 @@ tiana <- princess(princess_name = "Tiana",
                   princess_year = c(2009:2010))
 
 rapunzel <- princess(princess_name = "Rapunzel",
-                  princess_year = c(2010:2011))
+                  princess_year = c(2010:2011)) 
 
 merida <- princess(princess_name = "Merida",
-                     princess_year = c(2012:2013))
+                     princess_year = c(2012:2013)) 
 
 elsa <- princess(princess_name = "Elsa",
                    princess_year = c(2013:2014))
@@ -167,6 +160,7 @@ princesses_comparison <- bind_rows(snow_white, cinderella,
   ungroup() 
 
 
+# Plot
 princesses_comparison |> 
   ggplot(aes(princess_number, n)) +
   geom_col(data = princesses_comparison |> filter(period == 2),
@@ -203,7 +197,7 @@ princesses_comparison |>
     plot.subtitle = element_markdown(color = "white",
                                      size = 20,
                                      lineheight = 1.25,
-                                     margin = margin(t = 10, b = 100)),
+                                     margin = margin(t = 10, b = 200)),
     plot.caption = element_text(color = "white",
                                 size = 12,
                                 margin = margin(t = 60),
