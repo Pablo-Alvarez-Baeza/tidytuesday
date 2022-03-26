@@ -175,7 +175,7 @@ princesses_comparison |>
   coord_cartesian(expand = c(0, 0)) +
   theme_minimal(base_family = "Lato") +
   labs(title = "American Baby Girl Names <span style='color:grey75'>before </span> and <span style='color:#F4A7C2'>after </span> Disney Princess Movies",
-       subtitle = "In the <span style='color:#F4A7C2'>year following </span> a Disney princess movie, princess names are more popular",
+       subtitle = "In the <span style='color:#F4A7C2'>year following </span> a Disney princess movie, the name of the princess becomes more popular among newborn girls",
        caption = "Visualization by Pablo Alvarez | Data from the 'babynames' R package from Hadley Wickham",
        x = NULL,
        y = "Number of girls born in the U.S. with the corresponding princess name") +
