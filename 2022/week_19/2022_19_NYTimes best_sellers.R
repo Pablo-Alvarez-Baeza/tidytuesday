@@ -53,7 +53,7 @@ nyt_john_grisham_list |>
   geom_waffle(size = .1, n_rows = 1, color = "white") +
   coord_equal(expand = c(0, 0)) +
   facet_wrap(~ year, ncol = 1, strip.position = "top") +
-  scale_fill_manual(values = c("grey50", "#FF3EB5", "#0A8FD4")) +
+  scale_fill_manual(values = c("grey60", "#FF3EB5", "#0A8FD4")) +
   theme_void(base_family = "Lato") +
   labs(title = "John Grisham, America's Favorite Storyteller",
        subtitle = "Grisham is the author with the most number of weeks with <span style='color:#FF3EB5'>**one**</span> or <span style='color:#0A8FD4'>**multiple**</span> books appearing<br> on the New York Times Fiction Best Sellers List between the years of 2000 and 2020",
