@@ -88,3 +88,8 @@ eurovision |>
 
 ggsave("tidytuesday_2022_w20.png", width = 1080, height = 1080, units = "px", dpi = 320)
 
+gg_playback(
+  first_image_duration = 8,
+  last_image_duration = 12,
+  frame_duration = .15
+)
