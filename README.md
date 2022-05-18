@@ -1,5 +1,6 @@
 # tidytuesday
 
+![](2022/week_20/tidytuesday_2022_w20_fg.png)
 ![](2022/week_19/tidytuesday_2022_w19.png)
 ![](2022/week_12/tidytuesday2_2022_w12_figma.png)
 ![](2022/week_12/2012_12_usbabynames_figma.png)
