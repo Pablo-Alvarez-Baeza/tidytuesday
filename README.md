@@ -1,24 +1,31 @@
-# tidytuesday
+<h1 style="font-weight:normal" align="center">
+  &nbsp;#TidyTuesday&nbsp;
+</h1>
 
-![](2022/week_20/tidytuesday_2022_w20_fg.png)
-![](2022/week_19/tidytuesday_2022_w19.png)
-![](2022/week_12/tidytuesday2_2022_w12_figma.png)
-![](2022/week_12/2012_12_usbabynames_figma.png)
-![](2022/week_10/tidytuesday_2022_w10.png)
-![](2022/week_8/tidytuesday_2022_w8_figma.png) 
-![](2022/week_7/2022_7_duboischallenge.png)
-![](2022/week_6/tidytuesday_2022_w6.png)
-![](2022/week_5/tiytuesday_2022_w5.png)
-![](2022/week_4/tidytuesday_2022_w4.png)
-![](2022/week_3/tidytuesay_2022_w3.png)
-![](2022/week_2/tidytuesday_2022_w2.png)
-![](2022/week_1/tidytuesday_2022_w1.png)
-![](2021/week_52/tidytuesday_2021_w52.png)
-![](2021/week_51/tidytuesday_2021_w51.png)
-![](2021/week_50/tidytuesday_2021_w50.png)
-![](2021/week_49/tidytuesday_2021_w48.png)
-![](2021/week_48/tidytuesday_2021_w48.png)
+<div align="center">
+     <img src="icons/handwaving.gif"
+     width= 20 height=20>
+      Let's connect!
+     <br>
+     <br>
+&nbsp;&nbsp;&nbsp;
+<a href="https://twitter.com/pablo_alvrez"><img border="0" alt="Twitter" src="https://raw.githubusercontent.com/Pablo-Alvarez-Baeza/30DayChartChallenge/main/icons/twitter.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp; 
+<a href="https://www.instagram.com/hi.pablo.alvarez/"><img border="0" alt="Instagram" src="https://raw.githubusercontent.com/Pablo-Alvarez-Baeza/30DayChartChallenge/main/icons/instagram.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/pabloalvarezbaeza/"><img border="0" alt="LinkedIn" src="https://raw.githubusercontent.com/Pablo-Alvarez-Baeza/30DayChartChallenge/main/icons/linkedin.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.behance.net/pabloalvarez21"><img border="0" alt="Behance" src="https://raw.githubusercontent.com/Pablo-Alvarez-Baeza/30DayChartChallenge/main/icons/behance.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp;
+<br>
+<br>
+<br>
 
+   </div>
+   
+<p> Contributions in chronological order
+  
 
-
+  ## 2022
+  #### [2022/20_eurovision](2022/20_eurovision/)
+  ![](2022/20_eurovision/tidytuesday_2022_w20_fg.png)
+  
+  #### [2022/19_nytimes_best_sellers](2022/19_NYTimes_best_sellers/)
+  ![](2022/19_nytimes_best_sellers/tidytuesday_2022_w19.png)
 
