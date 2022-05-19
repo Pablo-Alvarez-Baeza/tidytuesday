@@ -23,8 +23,8 @@
   
 
   ## 2022
-  #### [2022/20_eurovision](2022/20_eurovision/)
-  ![](2022/20_eurovision/tidytuesday_2022_w20_fg.png)
+  #### [20_eurovision_song_contest](20_eurovision_song_contest/)
+  ![](2022/20_eurovision_song_contest/tidytuesday_2022_w20_fg.png)
   
   #### [2022/19_nytimes_best_sellers](2022/19_NYTimes_best_sellers/)
   ![](2022/19_nytimes_best_sellers/tidytuesday_2022_w19.png)
