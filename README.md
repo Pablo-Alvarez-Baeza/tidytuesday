@@ -59,5 +59,20 @@
   
   #### [01_BYOD](01_BYOD/)
   ![](2022/01_BYOD/tidytuesday_2022_w1.png)
-
-
+  
+  
+  ## 2021
+  #### [2021/52_starbucks_drinks](2021/52_starbucks_drinks/)
+  ![](2021/52_starbucks_drinks/tidytuesday_2021_w52.png)
+  
+  #### [2021/51_spice_girls](2021/51_spice_girls/)
+  ![](2021/51_spice_girls/tidytuesday_2021_w51.png)
+  
+  #### [2021/50_Spiders](2021/50_spiders/)
+  ![](2021/50_Spiders/tidytuesday_2021_w50.png)
+  
+  #### [2021/49_world_cup_cricket](2021/49_world_cup_cricket/)
+  ![](2021/49_world_cup_cricket/tidytuesday_2021_w49.png)
+  
+    #### [2021/48_dr_who](2021/48_dr_who/)
+  ![](2021/48_dr_who/tidytuesday_2021_w48.png)
