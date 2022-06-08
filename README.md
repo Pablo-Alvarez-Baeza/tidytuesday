@@ -21,10 +21,10 @@
    
 <p> Contributions in chronological order
   
-  #### [2022/23_pride_corporate_accountability_project](23_pride_corporate_accountability_project/)
+ 
   ![](2022/23_pride_corporate_accountability_project/tidytuesday_2022_w23_fg.png)
 
-  #### [2022/22_company_reputation_poll](tidytuesday/2022/22_company_reputation_poll/)
+  
   ![](2022/22_company_reputation_poll/tidytuesday_2022_w22.png)
   
   #### [20_eurovision_song_contest](20_eurovision_song_contest/)
