@@ -24,6 +24,8 @@
 
   ## 2022
   ![](2022/23_pride_corporate_accountability_project/tidytuesday_2022_w23_fg.png)
+
+  ![](2022/22_company_reputation_poll/tidytuesday_2022_w22.png)
   
   #### [20_eurovision_song_contest](20_eurovision_song_contest/)
   ![](2022/20_eurovision_song_contest/tidytuesday_2022_w20_fg.png)
